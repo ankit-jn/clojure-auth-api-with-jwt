@@ -6,6 +6,25 @@ This is an authentication service written in clojure backed by JWT mechanism
 
 `lein new compojure-api clojure-auth-api-with-jwt` 
 
+## Prerequisites
+
+### generate Private Key
+
+`openssl genrsa -aes128 -out auth_privkey.pem 2048`
+
+<Give your passphrase while you are running the above command>
+  
+### generate Public Key using Private Key
+  
+`openssl rsa -pubout -in auth_privkey.pem -out auth_pubkey.pem`
+
+### How to use the the above keys and passphrase
+
+1. Place the generate files (auth_privkey.pem and auth_pubkey.pem) in resources folder of the project
+2. Replace `<YOUR PASSPHRASE>` with you passphrase value in the following file          
+   
+  `clojure-auth-api-with-jwt\src\com\arjstack\tech\auth\security\token_security.clj`
+  
 ## Usage
 
 ### Run the application locally
